@@ -1,0 +1,37 @@
+body{
+    background: linear-gradient(-70deg, #ccc, #eee, #ddd);
+    margin: 0;
+    height: 100vh;
+    padding: 0;
+}
+.all{
+    max-width: 960px;
+    margin: 8px auto;
+    background: #fff;
+    padding: 16px;
+}
+header{
+    font-size: 80%;
+}
+.calendar-link{
+    display: flex;
+    width: auto;/*calc(100% - 32px - 32px - 4px);*/
+    margin: 16px;
+    border: 2px solid #b03a;
+    background: linear-gradient(-70deg, #b001, #d002, #c003);
+}
+.calendar-link > p.aside{
+    max-width: 30%;
+    margin: 8px;
+}
+.calendar-link > p.aside img{
+    width: 100%;
+    vertical-align: top;
+}
+.calendar-link > p:not(.aside){
+    flex-grow: 1;
+}
+
+.calendar-link > p{
+    margin: 16px; 
+}
