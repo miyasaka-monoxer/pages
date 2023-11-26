@@ -1,6 +1,6 @@
 void function () {
     const contentTable = {
-        "R051202": "R051202.html",
+        "R051202": "contents/R051202.html",
         "not_found": "not_found.html",
         "top": "top.html",
     }
@@ -8,6 +8,8 @@ void function () {
         "/pages/R051202": "contents/R051202.html",
         "/pages/": "top.html",
         "/pages": "top.html",
+        "/": "top.html",
+        "": "top.html",
     }
     const fallBackSource = [
         "<head><title>エラー</title></head>",
@@ -16,9 +18,15 @@ void function () {
 
     console.log(location.href)
     const url = new URL(location.href)
-    const name = url.pathname
-    console.log(name)
-    const filePath = routingTable[name] ?? "not_found.html"
+
+    const routingName = url.pathname
+    const routedPath = routingTable[routingName]
+
+    const searchParams = new URLSearchParams(url.search)
+    const queryName = searchParams.get("p") ?? ""
+    const queryPath = contentTable[queryName]
+
+    const filePath = queryPath ?? routedPath ?? "not_found.html"
 
     const request = new Request(filePath)
     fetch(request)
