@@ -14,7 +14,8 @@ void function () {
 
     console.log(location.href)
     const url = new URL(location.href)
-    const name = url.pathname;
+    const name = url.pathname
+    console.log(name)
     const filePath = routingTable[name] ?? "not_found.html"
 
     const request = new Request(filePath)
