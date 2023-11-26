@@ -1,5 +1,5 @@
 # pages
-Hello, world.
+https://github.com/miyasaka-monoxer/pages
 
 ## 参考にしたもの
 
