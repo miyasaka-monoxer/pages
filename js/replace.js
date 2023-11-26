@@ -5,7 +5,7 @@ void function () {
         "top": "top.html",
     }
     const routingTable = {
-        "pages/R051202": "contents/R051202.html",
+        "/pages/R051202": "contents/R051202.html",
     }
     const fallBackSource = [
         "<head><title>エラー</title></head>",
