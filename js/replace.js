@@ -12,8 +12,11 @@ void function () {
         "": "top.html",
     }
     const fallBackSource = [
-        "<head><title>エラー</title></head>",
-        "<body><h1>エラー</h1><p>予期しないエラーです。管理者にご連絡ください。</p></body>"
+        "<div class=all>",
+        "<nav><a href=\"./\">最も良い現在</a> › エラー</nav>",
+        "<h1>エラー</h1>",
+        "<p>予期しないエラーです。管理者にご連絡ください。</p>",
+        "</div>",
     ].join("\n")
 
     console.log(location.href)
