@@ -28,6 +28,7 @@ nav{
 header{
     min-height: 240px;
     background: linear-gradient(-70deg, #f804, #f802, #f803);
+    padding: 0 8px;
 }
 header hr{
     opacity: 0;
@@ -41,6 +42,7 @@ header h1{
     width: fit-content;/*calc(100% - 32px - 32px - 4px);*/
     max-width: calc(100% - 4px - 8px);
     margin: 16px auto 8px;
+    padding: 0 8px;
     border: 2px solid #c60a;
     background: transparent;/*linear-gradient(-70deg, #b003, #d002, #e002);*/
 }
@@ -58,6 +60,19 @@ header h1{
 
 .calendar-link > p{
     margin: 16px; 
+}
+
+.main {
+    padding: 0 8px;
+}
+.main > p{
+    max-width: 36em;
+    margin: 1.3em auto;
+}
+.main > h2{
+    font-size: 160%;
+    max-width: calc(40em / 1.6);
+    margin: 1.3em auto 0;
 }
 
 p a:link{
