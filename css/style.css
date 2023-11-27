@@ -2,6 +2,13 @@
     line-height: 1.6;
     text-align: justify;
 }
+a:link{
+    color: #a50;
+}
+a:link:visited{
+    color: #c96;
+}
+
 body{
     background: linear-gradient(-70deg, #ccc, #eee, #ddd);
     margin: 0;
@@ -20,7 +27,7 @@ nav{
 }
 header{
     min-height: 240px;
-    background: #fee;
+    background: linear-gradient(-70deg, #f804, #f802, #f803);
 }
 header hr{
     opacity: 0;
@@ -34,8 +41,8 @@ header h1{
     width: fit-content;/*calc(100% - 32px - 32px - 4px);*/
     max-width: calc(100% - 4px - 8px);
     margin: 16px auto 8px;
-    border: 2px solid #b03a;
-    background: linear-gradient(-70deg, #b003, #d002, #e001);
+    border: 2px solid #c60a;
+    background: transparent;/*linear-gradient(-70deg, #b003, #d002, #e002);*/
 }
 .calendar-link > p.aside{
     max-width: 30%;
