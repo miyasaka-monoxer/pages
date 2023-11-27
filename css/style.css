@@ -5,8 +5,11 @@
 a:link{
     color: #a50;
 }
-a:link:visited{
+a:visited{
     color: #c96;
+}
+a:hover, a:active{
+    color: #f80;
 }
 
 body{
