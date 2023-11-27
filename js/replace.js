@@ -26,11 +26,14 @@ void function () {
     const queryName = searchParams.get("p") ?? ""
     const queryPath = contentTable[queryName]
 
-    const filePath = queryPath ?? routedPath ?? "not_found.html"
+    const filePath = (queryName ? queryPath : routedPath) ?? "not_found.html"
 
     const request = new Request(filePath)
     fetch(request)
-        .then(response => response.blob())
+        .then(response => {
+            if (response.ok) return response.blob()
+            else return Promise.resolve(new Blob([fallBackSource]))
+        })
         .then(blob => blob.text())
         .then(text => document.body.innerHTML = text)
 }();
