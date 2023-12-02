@@ -1,5 +1,5 @@
 # pages
-https://github.com/miyasaka-monoxer/pages
+https://miyasaka-monoxer.github.io/pages/
 
 ## 参考にしたもの
 貴重な知見を参考にさせていただきました。
