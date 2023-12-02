@@ -63,6 +63,13 @@ header address{
 .banner.monoxer-link a:link{
     color: #0079F2ff;
 }
+.banner.monoxer-link a:visited{
+    color: #0079F2aa;
+}
+.banner.monoxer-link a:hover,
+.banner.monoxer-link a:active{
+    color: #f80;
+}
 .banner p.aside{
     max-width: 30%;
     margin: 8px;
@@ -101,6 +108,9 @@ header address{
 
 p a:link{
     margin: 0 2px;
+}
+p img{
+    max-width: 100%;
 }
 
 h2 {
