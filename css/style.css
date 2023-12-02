@@ -44,12 +44,13 @@ header address{
     text-align: right;
     margin: 0 48px;
     padding: 16px 0;
+    font-style: normal;
 }
 
 .banner{
     display: flex;
     width: fit-content;/*calc(100% - 32px - 32px - 4px);*/
-    width: calc(100% - 4px - 8px);
+    width: calc(100% - 4px - 8px - 8px - 16px);
     margin: 16px auto 8px;
     padding: 0 8px;
     background: transparent;/*linear-gradient(-70deg, #b003, #d002, #e002);*/
@@ -91,12 +92,13 @@ header address{
 }
 
 .main {
-    padding: 0 8px;
+    padding: 0 8px 16px;
 }
 .main > .banner {
     max-width: calc(36em - 16px - 16px - 4px);
 }
-.main > p{
+.main > p,
+.main > ul {
     max-width: 36em;
     margin: 1.3em auto;
 }
