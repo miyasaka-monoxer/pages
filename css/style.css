@@ -40,33 +40,54 @@ header h1{
     margin: 64px auto 48px;
     padding: 0 24px;
 }
-.calendar-link{
+header address{
+    text-align: right;
+    margin: 0 48px;
+    padding: 16px 0;
+}
+
+.banner{
     display: flex;
     width: fit-content;/*calc(100% - 32px - 32px - 4px);*/
-    max-width: calc(100% - 4px - 8px);
+    width: calc(100% - 4px - 8px);
     margin: 16px auto 8px;
     padding: 0 8px;
-    border: 2px solid #c60a;
     background: transparent;/*linear-gradient(-70deg, #b003, #d002, #e002);*/
 }
-.calendar-link > p.aside{
+.banner.calendar-link{
+    border: 2px solid #c60a;
+}
+.banner.monoxer-link{
+    border: 2px solid #0079F2ff;
+}
+.banner.monoxer-link a:link{
+    color: #0079F2ff;
+}
+.banner p.aside{
     max-width: 30%;
     margin: 8px;
 }
-.calendar-link > p.aside img{
+.banner p.aside img{
     width: 100%;
     vertical-align: top;
 }
-.calendar-link > p:not(.aside){
+.banner p:not(.aside){
     flex-grow: 1;
 }
 
-.calendar-link > p{
-    margin: 16px; 
+.banner p{
+    margin: 8px 16px;
+}
+.banner p.banner-main{
+    text-align: center;
+    margin: 32px 24px;
 }
 
 .main {
     padding: 0 8px;
+}
+.main > .banner {
+    max-width: calc(36em - 16px - 16px - 4px);
 }
 .main > p{
     max-width: 36em;
@@ -80,4 +101,8 @@ header h1{
 
 p a:link{
     margin: 0 2px;
+}
+
+h2 {
+    background: linear-gradient(0deg, #f800 10%, #f809 10%, #f809 20%, #f800 20%);
 }
