@@ -39,7 +39,6 @@ header h1{
     max-width: calc(40em / 1.8);
     font-size: 180%;
     margin: 64px auto 16px;
-    padding: 0 24px;
 }
 header h1 a:link,
 header h1 a:visited
@@ -92,7 +91,7 @@ header address{
 }
 
 .banner p{
-    margin: 8px 16px;
+    margin: 8px min(16px, max(0px, 100% - 30em));
 }
 .banner p.banner-main{
     text-align: center;
@@ -100,6 +99,8 @@ header address{
 }
 
 .main {
+    max-width: 40em;
+    margin: 0 auto;
     padding: 0 8px 16px;
 }
 .main > .banner {
