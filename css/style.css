@@ -30,7 +30,6 @@ nav{
 }
 header{
     min-height: 240px;
-    background: linear-gradient(-70deg, #f804, #f802, #f803);
     padding: 0 8px;
 }
 header hr{
