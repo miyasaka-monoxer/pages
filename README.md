@@ -12,3 +12,6 @@ https://qiita.com/h-kuwayama/items/6d429b3bd7f730e5b13b
 
 【2022年 デザイナー向け】Webデザインの横幅（コンテンツ幅）は何pxにする？
 https://moromi.net/artbord-size/
+
+【2021年版】OGPの設定方法と最適なOGP画像サイズまとめ
+https://www.sungrove.co.jp/ogp-setting/
