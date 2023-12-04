@@ -15,7 +15,7 @@ a:hover, a:active{
 body{
     background: linear-gradient(-70deg, #ccc, #eee, #ddd);
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
     padding: 0;
 }
 .all{
