@@ -21,9 +21,10 @@ body{
 .all{
     max-width: 960px;
     width: calc(100vw - 32px - 16px);
-    margin: 8px auto;
+    margin: 8px auto 16px;
     background: #fff;
     padding: 16px;
+    box-shadow: 4px 4px 8px #8888;
 }
 nav{
     font-size: 80%;
