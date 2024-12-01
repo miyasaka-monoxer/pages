@@ -1,6 +1,15 @@
 # pages
 https://miyasaka-monoxer.github.io/pages/
 
+## 記事追加の手順
+1. `R000000.html` を作成
+   - ODP 画像も設定する
+2. `.htaccess` に記述を追加
+   - ローカルでのテスト用
+   - GitHub Pages では `/R000000` で `/R000000.html` が出る
+3. `index.html` からリンクを貼る
+   - `/R000000` の形にしておく
+
 ## 参考にしたもの
 貴重な知見を参考にさせていただきました。
 
