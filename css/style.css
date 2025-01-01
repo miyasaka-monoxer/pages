@@ -128,3 +128,38 @@ p img{
 h2 {
     background: linear-gradient(0deg, #f800 10%, #f809 10%, #f809 20%, #f800 20%);
 }
+blockquote {
+    border: 1px solid #888;
+    margin: 1.8em 2em;
+    padding: 8px 1em;
+    color: #33a;
+    border-color: #33a;
+}
+
+blockquote.message {
+    color: #a33;
+    border-color: #a33;
+}
+
+p.img.right {
+    float: right;
+    margin-left: 1em;
+    max-width: 40%;
+}
+
+p.img.right:not(:first-child) {
+    margin-top: 0;
+}
+
+p.img.center {
+    margin: 0 auto 1em;
+    max-width: 40%;
+}
+
+hr.break {
+    visibility: hidden;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    clear: both;
+}
