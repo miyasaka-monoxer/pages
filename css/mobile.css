@@ -1,4 +1,44 @@
+header {
+    min-height: 0;
+    padding: 0 8px 0;
+    margin-bottom: 1.3em;
+}
 header h1{
-    margin: 32px auto 80px;
-    padding: 0 24px;
+    margin: 8px auto 8px;
+        padding: 0 8px;
+    }
+    
+    header address {
+        padding: 0;
+        max-width: 80%;
+    }
+    
+    blockquote,
+    blockquote.message {
+        margin: 0 0;
+        padding: 4px 0.5em;
+    }
+    
+    .main>p,
+    .main>ul {
+        margin: 0.8em auto;
+    }
+    
+    .main>h2 {
+        margin: 0.8em auto 0;
+    }
+    
+    p.img.right {
+        float: none;
+        margin-left: auto;
+        max-width: 16em;
+    }
+    
+    p.img.right:not(:first-child) {
+        margin-top: 0;
+    }
+    
+    p.img.center {
+        margin: 0 auto 1em;
+        max-width: 16em;
 }
