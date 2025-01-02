@@ -23,6 +23,14 @@ header h1{
     .main>ul {
         margin: 0.8em auto;
     }
+
+blockquote p:first-child {
+    margin-top: 0.8em;
+}
+
+blockquote p:last-child {
+    margin-bottom: 0.8em;
+}
     
     .main>h2 {
         margin: 0.8em auto 0;
