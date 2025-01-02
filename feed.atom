@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja">
+
+  <id>tag:miyasaka@monoxer.com,2023-12-01:pages-feed</id>
+  <title>最も良い現在</title>
+  <link rel="alternate" href="https://miyasaka-monoxer.github.io/pages/"/>
+  <link rel="self" type="application/atom+xml" href="https://miyasaka-monoxer.github.io/feed.atom"/>
+  <author><email>miyasaka@monoxer.com</email></author>
+  <updated>2025-01-02T17:00:00+09:00</updated>
+
+  <entry>
+    <id>tag:miyasaka@monoxer.com,2025-01-01:pages-R070101</id>
+    <link href="https://miyasaka-monoxer.github.io/pages/R070101"/>
+    <title>年賀問題「あるスタートアップのリファラル事情」</title>
+    <summary>令和7年の年賀問題です。新進気鋭のスタートアップである某社は、創業以来7回のリファラル採用を行ったそうです。問題で明かされる情報にもとづいて、この会社の人物相関図を想像するとき、人物相関図は何通り考えられるでしょうか？</summary>
+    <updated>2025-01-02T17:00:00+09:00</updated>
+  </entry>
+
+  <entry>
+    <id>tag:miyasaka@monoxer.com,2024-12-02:pages-R061202</id>
+    <link href="https://miyasaka-monoxer.github.io/pages/R061202"/>
+    <title>編集者だったソフトウェアエンジニアがママを恋しいと思うとき</title>
+    <summary>前職では出版編集の現場にいました。彼らは文言修正のプロであり、修正を伝えるための用語やプラクティスを多く持っています。ソフトウェアエンジニアにも学ぶところがありそうです。</summary>
+    <updated>2024-12-02T23:00:00+09:00</updated>
+  </entry>
+
+  <entry>
+    <id>tag:miyasaka@monoxer.com,2023-12-02:pages-R051202</id>
+    <link href="https://miyasaka-monoxer.github.io/pages/R051202"/>
+    <title>プログラムは書いた通りに動く？ - 最も良い現在</title>
+    <summary>「プログラムは書いた通りに動く」。このことわざは、コンピュータに限った話なのでしょうか？</summary>
+    <updated>2023-12-02T23:00:00+09:00</updated>
+  </entry>
+
+</feed>
