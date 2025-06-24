@@ -9,6 +9,7 @@ https://miyasaka-monoxer.github.io/pages/
    - GitHub Pages では `/R000000` で `/R000000.html` が出る
 3. `index.html` からリンクを貼る
    - `/R000000` の形にしておく
+4. `feed.atom` にアイテムを追加
 
 ## 参考にしたもの
 貴重な知見を参考にさせていただきました。
