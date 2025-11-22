@@ -28,6 +28,11 @@ footer {
     padding: 0 8px;
 }
 
+.banner p.banner-main {
+    margin: 8px 0;
+}
+
+
 .main>h2 {
     font-size: 120%;
 }
