@@ -146,6 +146,12 @@ footer {
     margin: 1.3em auto 0;
 }
 
+.main>h3 {
+    font-size: 120%;
+    max-width: calc(40em / 1.2);
+    margin: 1em auto 0;
+}
+
 p a:link {
     margin: 0 2px;
 }
