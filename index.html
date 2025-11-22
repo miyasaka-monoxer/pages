@@ -28,6 +28,19 @@
             color: #fff;
             text-shadow: 0px 0px 20px #000f;
         }
+        ul.grandmenu {
+            padding: 0 16px;
+        }
+        ul.grandmenu ul,
+        ul.grandmenu ol {
+            padding: 0 32px;
+        }
+        ul.grandmenu li {
+            margin: 8px 0;
+        }
+        ul.grandmenu li::marker {
+            content: none;
+        }
     </style>
 </head>
 <div class="all">
@@ -38,7 +51,7 @@
 </header>
 <div class="main">
 <h2>雑記</h2>
-<ul>
+<ul class="grandmenu">
     <li><a href="./R051202">プログラムは書いた通りに動く？</a></li>
     <li><a href="./R061202">編集者だったソフトウェアエンジニアがママを恋しいと思うとき</a></li>
     <li><a href="./R070101">年賀問題「あるスタートアップのリファラル事情」</a></li>
