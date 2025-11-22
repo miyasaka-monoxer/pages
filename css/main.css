@@ -65,6 +65,10 @@ header address {
     font-style: normal;
 }
 
+footer {
+    padding: 0 8px;
+}
+
 .banner {
     display: flex;
     width: fit-content;
