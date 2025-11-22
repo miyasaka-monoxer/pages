@@ -4,9 +4,11 @@ https://miyasaka-monoxer.github.io/pages/
 ## 記事追加の手順
 1. `R000000.html` を作成
    - ODP 画像も設定する
-2. `.htaccess` に記述を追加
-   - ローカルでのテスト用
-   - GitHub Pages では `/R000000` で `/R000000.html` が出る
+2. `settings.json` に記述を追加
+   - ローカル（VSCode）でのテスト用
+   - GitHub Pages では，特に設定しなくても `/R000000` で `/R000000.html` が出る（ `.html` が補完される）
+   - それを再現するため， `setting.json` で `liveServer.settings.mount` に値を追加する
+     + `["/R000000", "./R000000.html"]`
 3. `index.html` からリンクを貼る
    - `/R000000` の形にしておく
 4. `feed.atom` にアイテムを追加
