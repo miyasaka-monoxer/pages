@@ -160,6 +160,10 @@ p img {
     max-width: 100%;
 }
 
+p img:not([src]) {
+    display: none;
+}
+
 h2 {
     background: linear-gradient(0deg, #f800 10%, #f809 10%, #f809 20%, #f800 20%);
 }
@@ -191,10 +195,6 @@ p.img.right:not(:first-child) {
 p.img.center {
     margin: 0 auto 1em;
     max-width: 40%;
-}
-
-p.img:not([src]) {
-    display: none;
 }
 
 hr.break {
