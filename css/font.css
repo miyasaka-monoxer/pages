@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@700&family=BIZ+UDPMincho&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital@1&display=swap');
 
 body {
     font-family: "BIZ UDPMincho";
@@ -9,4 +10,9 @@ h1, h2, h3, h4, h5, h6, em, strong {
     font-family: "BIZ UDPGothic";
     font-weight: 700;
     font-style: normal;
+}
+var {
+  font-family: "Old Standard TT", serif;
+  font-weight: 400;
+  font-style: italic;
 }
