@@ -193,6 +193,10 @@ p.img.center {
     max-width: 40%;
 }
 
+p.img:not([src]) {
+    display: none;
+}
+
 hr.break {
     visibility: hidden;
     margin: 0;
