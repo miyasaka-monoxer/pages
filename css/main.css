@@ -158,6 +158,7 @@ p a:link {
 
 p img {
     max-width: 100%;
+    vertical-align: middle;
 }
 
 p img:not([src]) {
