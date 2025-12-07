@@ -139,6 +139,9 @@ footer {
     max-width: 36em;
     margin: 1.3em auto;
 }
+.main>p.img.right {
+    margin-right: calc((100% - 36em) / 2);
+}
 
 .main>h2 {
     font-size: 160%;
@@ -159,6 +162,10 @@ p a:link {
 p img {
     max-width: 100%;
     vertical-align: middle;
+}
+
+p.img.center img {
+    max-width: 60%;
 }
 
 p img:not([src]) {
@@ -194,8 +201,8 @@ p.img.right:not(:first-child) {
 }
 
 p.img.center {
+    text-align: center;
     margin: 0 auto 1em;
-    max-width: 40%;
 }
 
 hr.break {

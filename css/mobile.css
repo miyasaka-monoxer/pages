@@ -45,6 +45,13 @@ footer {
 .main>ul {
     margin: 0.8em auto;
 }
+.main>p.img.right {
+    margin: auto;
+}
+
+p.img.center img {
+    max-width: 100%;
+}
 
 .main>h2 {
     font-size: 140%;
