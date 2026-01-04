@@ -53,6 +53,11 @@ p.img.center img {
     max-width: 100%;
 }
 
+ul,
+ol {
+    padding: 0;
+}
+
 .main>h2 {
     font-size: 140%;
     margin: 0.8em auto 0;

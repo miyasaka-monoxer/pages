@@ -196,6 +196,14 @@ blockquote.message {
     border-color: #a33;
 }
 
+ul,
+ol {
+    padding: 0 16px;
+}
+ul li,
+ol li {
+    margin: 8px 16px;
+}
 ul li::marker {
     content: none;
 }
