@@ -218,7 +218,8 @@ p.img.right:not(:first-child) {
     margin-top: 0;
 }
 
-p.img.center {
+p.img.center,
+li.img.center {
     text-align: center;
     margin: 0 auto 1em;
 }
