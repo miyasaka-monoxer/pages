@@ -159,16 +159,19 @@ p a:link {
     margin: 0 2px;
 }
 
-p img {
+p img,
+li img {
     max-width: 100%;
     vertical-align: middle;
 }
 
-p.img.center img {
+p.img.center img,
+li.img.center img {
     max-width: 60%;
 }
 
-p img:not([src]) {
+p img:not([src]),
+li img:not([src]) {
     display: none;
 }
 
@@ -184,10 +187,17 @@ blockquote {
     border-color: #33a;
 }
 
-blockquote.message {
+blockquote > blockquote.message {
     margin: 1.8em 0.5em;
+}
+
+blockquote.message {
     color: #a33;
     border-color: #a33;
+}
+
+ul li::marker {
+    content: none;
 }
 
 p.img.right {
