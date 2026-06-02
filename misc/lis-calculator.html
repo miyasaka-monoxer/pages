@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>最長部分増加列 計算機</title>
+  <meta property="og:title" content="最長部分増加列 計算機">
+  <meta property="og:description" content="数列を入力すると、最長部分増加列（Longest Increasing Subsequence）の長さを計算します。">
+  <meta property="og:type" content="website">
+  <meta name="description" content="数列を入力すると、最長部分増加列（Longest Increasing Subsequence）の長さを計算します。">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -69,13 +73,13 @@
     }
 
     input[type="text"]:focus {
-      border-color: #667eea;
+      border-color: #5a67d8;
       background: #fff;
     }
 
     button#calcBtn {
       padding: 14px 20px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
+      background: #5a67d8;
       color: #fff;
       font-size: 1rem;
       font-weight: 700;
@@ -83,10 +87,10 @@
       border-radius: 12px;
       cursor: pointer;
       white-space: nowrap;
-      transition: opacity 0.2s, transform 0.1s;
+      transition: opacity 0.15s;
     }
 
-    button#calcBtn:active { transform: scale(0.97); opacity: 0.9; }
+    button#calcBtn:active { opacity: 0.75; }
 
     .hint {
       font-size: 0.75rem;
@@ -114,38 +118,10 @@
       margin-bottom: 10px;
     }
 
-    /* 数列表示 */
-    .seq-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 20px;
-    }
-
-    .num-chip {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px;
-      height: 48px;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 600;
-      background: #edf2f7;
-      color: #4a5568;
-      transition: background 0.3s, color 0.3s;
-      position: relative;
-    }
-
-    .num-chip.lis {
-      background: #4a5568;
-      color: #fff;
-    }
-
     /* 結果サマリ */
     .summary-box {
       background: #ebf4ff;
-      border-left: 4px solid #667eea;
+      border-left: 4px solid #5a67d8;
       border-radius: 0 10px 10px 0;
       padding: 14px 16px;
     }
@@ -153,13 +129,40 @@
     .summary-length {
       font-size: 1.5rem;
       font-weight: 800;
-      color: #667eea;
+      color: #5a67d8;
     }
 
     .summary-label {
       font-size: 0.8rem;
       color: #4a5568;
       margin-bottom: 8px;
+    }
+
+    /* 数列表示 */
+    .seq-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 14px;
+    }
+
+    .num-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 28px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: #e2e8f0;
+      color: #718096;
+    }
+
+    .num-chip.lis {
+      background: #4a5568;
+      color: #fff;
     }
 
     /* 入力値の確認表示 */
@@ -205,7 +208,7 @@
     >
     <button id="calcBtn" onclick="calculate()">計算</button>
   </div>
-  <p class="hint">カンマ区切りで入力　例: <code>3,10,2,8,5,7</code></p>
+  <p class="hint">カンマ区切りで入力　例: <code>13,47,27,41,19,58,63,76,88</code></p>
   <p class="error" id="errorMsg"></p>
 
   <!-- Result -->
@@ -215,9 +218,8 @@
     <div class="summary-box">
       <div class="summary-label">最長部分増加列の長さ</div>
       <div class="summary-length" id="lisLength">0</div>
+      <div class="seq-wrap" id="seqDisplay"></div>
     </div>
-
-    <div class="seq-wrap" id="seqDisplay"></div>
   </div>
 </div>
 
@@ -337,6 +339,7 @@
     });
 
     resultDiv.style.display = 'block';
+    seqInput.select();
   }
 </script>
 </body>
