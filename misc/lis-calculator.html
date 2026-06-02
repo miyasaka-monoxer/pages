@@ -8,8 +8,55 @@
   <meta property="og:description" content="数列を入力すると、最長部分増加列（Longest Increasing Subsequence）の長さを計算します。">
   <meta property="og:type" content="website">
   <meta name="description" content="数列を入力すると、最長部分増加列（Longest Increasing Subsequence）の長さを計算します。">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#5a67d8">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="LIS計算機">
+  <link rel="apple-touch-icon" href="icon.svg">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    #installBanner {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid #c3dafe;
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    #installBanner span {
+      flex: 1;
+      font-size: 0.85rem;
+      color: #3c4a6e;
+    }
+
+    #installBtn {
+      padding: 6px 14px;
+      background: #5a67d8;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    #installDismiss {
+      background: none;
+      border: none;
+      color: #a0aec0;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 0 4px;
+    }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
@@ -82,20 +129,39 @@
       background: #fff;
     }
 
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
     button#calcBtn {
       padding: 10px 24px;
       background: #5a67d8;
       color: #fff;
       font-size: 1rem;
       font-weight: 700;
-      border: none;
+      border: 2px solid transparent;
       border-radius: 12px;
       cursor: pointer;
-      align-self: center;
       transition: opacity 0.15s;
     }
 
     button#calcBtn:active { opacity: 0.75; }
+
+    button#resetBtn {
+      padding: 10px 20px;
+      background: #fff;
+      color: #4a5568;
+      font-size: 1rem;
+      font-weight: 600;
+      border: 2px solid #cbd5e0;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    button#resetBtn:active { opacity: 0.65; }
 
     .hint {
       font-size: 0.75rem;
@@ -194,6 +260,12 @@
 </head>
 <body>
 
+<div id="installBanner">
+  <span>ホーム画面に追加するとオフラインでも使えます</span>
+  <button id="installBtn">追加</button>
+  <button id="installDismiss" aria-label="閉じる">✕</button>
+</div>
+
 <h1>最長部分増加列</h1>
 <p class="subtitle">Longest Increasing Subsequence</p>
 
@@ -208,7 +280,10 @@
       spellcheck="false"
       rows="1"
     ></textarea>
-    <button id="calcBtn" onclick="calculate()">計算</button>
+    <div class="btn-row">
+      <button id="calcBtn" tabindex="2" onclick="calculate()">計算</button>
+      <button id="resetBtn" tabindex="3" onclick="resetAll()">リセット</button>
+    </div>
   </div>
   <p class="error" id="errorMsg"></p>
 
@@ -223,6 +298,32 @@
 </div>
 
 <script>
+  // Service Worker 登録
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  }
+
+  // インストールバナー
+  let deferredPrompt;
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredPrompt = e;
+    document.getElementById('installBanner').style.display = 'flex';
+  });
+  document.getElementById('installBtn').addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    document.getElementById('installBanner').style.display = 'none';
+  });
+  document.getElementById('installDismiss').addEventListener('click', () => {
+    document.getElementById('installBanner').style.display = 'none';
+  });
+  window.addEventListener('appinstalled', () => {
+    document.getElementById('installBanner').style.display = 'none';
+  });
+
   const seqInput = document.getElementById('seqInput');
   const resultDiv = document.getElementById('result');
 
@@ -242,6 +343,15 @@
   seqInput.addEventListener('keydown', e => {
     if (e.key === 'Enter') { e.preventDefault(); calculate(); }
   });
+
+  function resetAll() {
+    seqInput.value = '';
+    seqInput.style.height = 'auto';
+    resultDiv.style.display = 'none';
+    resultDiv.classList.remove('stale');
+    document.getElementById('errorMsg').style.display = 'none';
+    seqInput.focus();
+  }
 
   function showError(msg) {
     const el = document.getElementById('errorMsg');
