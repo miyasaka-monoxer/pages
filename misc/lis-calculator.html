@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>最長部分増加列 計算機</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      background: #f0f4f8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 48px;
+    }
+
+    h1 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1a202c;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 0.82rem;
+      color: #718096;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      padding: 24px 20px;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #4a5568;
+      margin-bottom: 8px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 14px 16px;
+      font-size: 1.1rem;
+      font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      outline: none;
+      transition: border-color 0.2s;
+      color: #2d3748;
+      background: #f7fafc;
+    }
+
+    input[type="text"]:focus {
+      border-color: #667eea;
+      background: #fff;
+    }
+
+    button#calcBtn {
+      padding: 14px 20px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    button#calcBtn:active { transform: scale(0.97); opacity: 0.9; }
+
+    .hint {
+      font-size: 0.75rem;
+      color: #a0aec0;
+      margin-top: 8px;
+    }
+
+    .error {
+      font-size: 0.85rem;
+      color: #e53e3e;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* ---------- Result ---------- */
+    #result {
+      margin-top: 28px;
+      display: none;
+    }
+
+    .result-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #4a5568;
+      margin-bottom: 10px;
+    }
+
+    /* 数列表示 */
+    .seq-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .num-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      background: #edf2f7;
+      color: #4a5568;
+      transition: background 0.3s, color 0.3s;
+      position: relative;
+    }
+
+    .num-chip.lis {
+      background: #4a5568;
+      color: #fff;
+    }
+
+    /* 結果サマリ */
+    .summary-box {
+      background: #ebf4ff;
+      border-left: 4px solid #667eea;
+      border-radius: 0 10px 10px 0;
+      padding: 14px 16px;
+    }
+
+    .summary-length {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #667eea;
+    }
+
+    .summary-label {
+      font-size: 0.8rem;
+      color: #4a5568;
+      margin-bottom: 8px;
+    }
+
+    /* 入力値の確認表示 */
+    .input-display {
+      font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: #4a5568;
+      margin-bottom: 16px;
+    }
+
+    /* 結果が古い（未再計算）状態 */
+    #result.stale {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .hint code {
+      font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+      font-size: 0.8rem;
+      background: #edf2f7;
+      border: 1px solid #cbd5e0;
+      border-radius: 5px;
+      padding: 1px 6px;
+      color: #2d3748;
+    }
+  </style>
+</head>
+<body>
+
+<h1>最長部分増加列</h1>
+<p class="subtitle">Longest Increasing Subsequence</p>
+
+<div class="card">
+  <label for="seqInput">数列を入力</label>
+  <div class="input-row">
+    <input
+      type="text"
+      id="seqInput"
+      inputmode="decimal"
+      autocomplete="off"
+      autocorrect="off"
+      spellcheck="false"
+    >
+    <button id="calcBtn" onclick="calculate()">計算</button>
+  </div>
+  <p class="hint">カンマ区切りで入力　例: <code>3,10,2,8,5,7</code></p>
+  <p class="error" id="errorMsg"></p>
+
+  <!-- Result -->
+  <div id="result">
+    <hr style="border:none;border-top:1px solid #e2e8f0;margin:20px 0 18px;">
+    <div class="input-display" id="inputDisplay"></div>
+    <div class="summary-box">
+      <div class="summary-label">最長部分増加列の長さ</div>
+      <div class="summary-length" id="lisLength">0</div>
+    </div>
+
+    <div class="seq-wrap" id="seqDisplay"></div>
+  </div>
+</div>
+
+<script>
+  const seqInput = document.getElementById('seqInput');
+  const resultDiv = document.getElementById('result');
+
+  // フォーカス時に全選択
+  seqInput.addEventListener('focus', () => seqInput.select());
+
+  // 入力変更時に結果を「古い」状態に
+  seqInput.addEventListener('input', () => {
+    if (resultDiv.style.display !== 'none') {
+      resultDiv.classList.add('stale');
+    }
+  });
+
+  // Enter キーで計算
+  seqInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') calculate();
+  });
+
+  function showError(msg) {
+    const el = document.getElementById('errorMsg');
+    el.textContent = msg;
+    el.style.display = 'block';
+    resultDiv.style.display = 'none';
+    resultDiv.classList.remove('stale');
+  }
+
+  function hideError() {
+    document.getElementById('errorMsg').style.display = 'none';
+  }
+
+  function calculate() {
+    hideError();
+
+    const raw = document.getElementById('seqInput').value.trim();
+    if (!raw) { showError('数列を入力してください。'); return; }
+
+    const parts = raw.split(/[\s,，、]+/).filter(s => s !== '');
+    const nums = parts.map(s => {
+      const n = parseInt(s, 10);
+      return isNaN(n) ? null : n;
+    });
+
+    if (nums.includes(null)) { showError('数値として読めない値が含まれています。'); return; }
+    if (nums.length === 0) { showError('数列を入力してください。'); return; }
+
+    // ---------- LIS (O(n^2) DP + 全解列挙) ----------
+    const n = nums.length;
+    const dp = new Array(n).fill(1);       // dp[i] = nums[i] で終わる LIS の長さ
+    const prev = new Array(n).fill(-1);    // 経路復元用
+
+    for (let i = 1; i < n; i++) {
+      for (let j = 0; j < i; j++) {
+        if (nums[j] < nums[i] && dp[j] + 1 > dp[i]) {
+          dp[i] = dp[j] + 1;
+          prev[i] = j;
+        }
+      }
+    }
+
+    const maxLen = Math.max(...dp);
+
+    // 全ての LIS を列挙（最大 20 件まで）
+    const MAX_SOLUTIONS = 20;
+    const allLIS = [];
+
+    function backtrack(idx, seq) {
+      if (allLIS.length >= MAX_SOLUTIONS) return;
+      seq.push(idx);
+      if (dp[idx] === 1) {
+        allLIS.push([...seq].reverse());
+      } else {
+        for (let j = 0; j < idx; j++) {
+          if (nums[j] < nums[idx] && dp[j] === dp[idx] - 1) {
+            backtrack(j, seq);
+            if (allLIS.length >= MAX_SOLUTIONS) break;
+          }
+        }
+      }
+      seq.pop();
+    }
+
+    for (let i = 0; i < n; i++) {
+      if (dp[i] === maxLen) {
+        backtrack(i, []);
+        if (allLIS.length >= MAX_SOLUTIONS) break;
+      }
+    }
+
+    // 重複除去（インデックス列として比較）
+    const uniqueLIS = [];
+    const seen = new Set();
+    for (const sol of allLIS) {
+      const key = sol.join(',');
+      if (!seen.has(key)) { seen.add(key); uniqueLIS.push(sol); }
+    }
+
+    const primarySolution = uniqueLIS[0];
+    const primarySet = new Set(primarySolution);
+
+    // ---------- 描画 ----------
+    resultDiv.classList.remove('stale');
+    document.getElementById('inputDisplay').textContent = nums.join(',');
+    document.getElementById('lisLength').textContent = maxLen;
+
+    // 数列チップ
+    const seqDisplay = document.getElementById('seqDisplay');
+    seqDisplay.innerHTML = '';
+    nums.forEach((v, i) => {
+      const chip = document.createElement('div');
+      chip.className = 'num-chip' + (primarySet.has(i) ? ' lis' : '');
+      chip.textContent = v;
+      seqDisplay.appendChild(chip);
+    });
+
+    resultDiv.style.display = 'block';
+  }
+</script>
+</body>
+</html>
