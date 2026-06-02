@@ -55,14 +55,15 @@
 
     .input-row {
       display: flex;
-      gap: 10px;
-      align-items: stretch;
+      flex-direction: column;
+      gap: 8px;
     }
 
-    input[type="text"] {
+    textarea#seqInput {
       flex: 1;
-      padding: 14px 16px;
-      font-size: 1.1rem;
+      min-width: 0;
+      padding: 9px 12px;
+      font-size: 0.9rem;
       font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
       border: 2px solid #e2e8f0;
       border-radius: 12px;
@@ -70,15 +71,19 @@
       transition: border-color 0.2s;
       color: #2d3748;
       background: #f7fafc;
+      resize: none;
+      overflow: hidden;
+      line-height: 1.5;
+      min-height: 42px;
     }
 
-    input[type="text"]:focus {
+    textarea#seqInput:focus {
       border-color: #5a67d8;
       background: #fff;
     }
 
     button#calcBtn {
-      padding: 14px 20px;
+      padding: 10px 24px;
       background: #5a67d8;
       color: #fff;
       font-size: 1rem;
@@ -86,7 +91,7 @@
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      white-space: nowrap;
+      align-self: center;
       transition: opacity 0.15s;
     }
 
@@ -126,16 +131,16 @@
       padding: 14px 16px;
     }
 
-    .summary-length {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #5a67d8;
-    }
-
     .summary-label {
       font-size: 0.8rem;
       color: #4a5568;
-      margin-bottom: 8px;
+    }
+
+    .summary-length {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #5a67d8;
+      margin-left: 6px;
     }
 
     /* 数列表示 */
@@ -143,18 +148,18 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 5px;
-      margin-top: 14px;
+      gap: 3px;
+      margin-top: 12px;
     }
 
     .num-chip {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 34px;
-      height: 28px;
-      border-radius: 5px;
-      font-size: 0.8rem;
+      width: 22px;
+      height: 18px;
+      border-radius: 3px;
+      font-size: 0.65rem;
       font-weight: 600;
       background: #e2e8f0;
       color: #718096;
@@ -182,11 +187,7 @@
     .hint code {
       font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
       font-size: 0.8rem;
-      background: #edf2f7;
-      border: 1px solid #cbd5e0;
-      border-radius: 5px;
-      padding: 1px 6px;
-      color: #2d3748;
+      color: inherit;
     }
   </style>
 </head>
@@ -196,28 +197,25 @@
 <p class="subtitle">Longest Increasing Subsequence</p>
 
 <div class="card">
-  <label for="seqInput">数列を入力</label>
+  <p class="hint" style="margin-bottom:8px;">例：<code>13,47,27,41,19,58,63,76,88</code></p>
   <div class="input-row">
-    <input
-      type="text"
+    <textarea
       id="seqInput"
       inputmode="decimal"
       autocomplete="off"
       autocorrect="off"
       spellcheck="false"
-    >
+      rows="1"
+    ></textarea>
     <button id="calcBtn" onclick="calculate()">計算</button>
   </div>
-  <p class="hint">カンマ区切りで入力　例: <code>13,47,27,41,19,58,63,76,88</code></p>
   <p class="error" id="errorMsg"></p>
 
   <!-- Result -->
   <div id="result">
     <hr style="border:none;border-top:1px solid #e2e8f0;margin:20px 0 18px;">
-    <div class="input-display" id="inputDisplay"></div>
     <div class="summary-box">
-      <div class="summary-label">最長部分増加列の長さ</div>
-      <div class="summary-length" id="lisLength">0</div>
+      <span class="summary-label">最長部分増加列の長さ：</span><span class="summary-length" id="lisLength">0</span>
       <div class="seq-wrap" id="seqDisplay"></div>
     </div>
   </div>
@@ -230,16 +228,18 @@
   // フォーカス時に全選択
   seqInput.addEventListener('focus', () => seqInput.select());
 
-  // 入力変更時に結果を「古い」状態に
+  // 入力変更時: auto-resize + stale 状態に
   seqInput.addEventListener('input', () => {
+    seqInput.style.height = 'auto';
+    seqInput.style.height = seqInput.scrollHeight + 'px';
     if (resultDiv.style.display !== 'none') {
       resultDiv.classList.add('stale');
     }
   });
 
-  // Enter キーで計算
+  // Enter キーで計算（改行は挿入しない）
   seqInput.addEventListener('keydown', e => {
-    if (e.key === 'Enter') calculate();
+    if (e.key === 'Enter') { e.preventDefault(); calculate(); }
   });
 
   function showError(msg) {
@@ -325,7 +325,6 @@
 
     // ---------- 描画 ----------
     resultDiv.classList.remove('stale');
-    document.getElementById('inputDisplay').textContent = nums.join(',');
     document.getElementById('lisLength').textContent = maxLen;
 
     // 数列チップ
@@ -339,7 +338,6 @@
     });
 
     resultDiv.style.display = 'block';
-    seqInput.select();
   }
 </script>
 </body>
