@@ -212,10 +212,12 @@
     /* 数列表示 */
     .seq-wrap {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      flex-wrap: nowrap;
+      justify-content: safe center;
       gap: 3px;
       margin-top: 12px;
+      position: relative;
+      overflow-x: auto;
     }
 
     .num-chip {
@@ -230,11 +232,25 @@
       font-weight: 600;
       background: #e2e8f0;
       color: #718096;
+      position: relative;
+      z-index: 0;
     }
 
     .num-chip.lis {
       background: #97266d;
       color: #fff;
+      z-index: 2;
+    }
+
+    /* 串団子ライン */
+    .lis-line {
+      position: absolute;
+      height: 3px;
+      background: rgba(151, 38, 109, 0.38);
+      transform: translateY(-50%);
+      z-index: 1;
+      pointer-events: none;
+      border-radius: 2px;
     }
 
     /* 入力値の確認表示 */
@@ -344,6 +360,28 @@
     if (e.key === 'Enter') { e.preventDefault(); calculate(); }
   });
 
+  function drawLisLine(container) {
+    const existing = container.querySelector('.lis-line');
+    if (existing) existing.remove();
+
+    const lisChips = [...container.querySelectorAll('.num-chip.lis')];
+    if (lisChips.length < 2) return;
+
+    const first = lisChips[0];
+    const last  = lisChips[lisChips.length - 1];
+
+    const x1 = first.offsetLeft;
+    const x2 = last.offsetLeft + last.offsetWidth;
+    const y  = first.offsetTop + first.offsetHeight / 2;
+
+    const line = document.createElement('div');
+    line.className = 'lis-line';
+    line.style.left  = x1 + 'px';
+    line.style.top   = y  + 'px';
+    line.style.width = (x2 - x1) + 'px';
+    container.appendChild(line);
+  }
+
   function resetAll() {
     seqInput.value = '';
     seqInput.style.height = 'auto';
@@ -359,6 +397,8 @@
     el.style.display = 'block';
     resultDiv.style.display = 'none';
     resultDiv.classList.remove('stale');
+    seqInput.focus();
+    seqInput.select();
   }
 
   function hideError() {
@@ -449,6 +489,9 @@
     });
 
     resultDiv.style.display = 'block';
+
+    // 串団子ライン（レイアウト確定後に描画）
+    requestAnimationFrame(() => drawLisLine(seqDisplay));
   }
 </script>
 </body>
